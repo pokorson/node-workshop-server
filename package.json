@@ -1,18 +1,17 @@
 {
   "name": "react-workshop-server",
   "version": "1.0.0",
-  "description": "",
-  "main": "app.js",
+  "description": "Simple server for test client test purposes",
+  "main": "server.js",
+  "engines": {
+    "node": ">=9.8.0"
+  },
   "scripts": {
-    "start": "node --harmony babel.app"
+    "start": "node server"
   },
   "author": "Mateusz Pokora",
   "license": "MIT",
   "dependencies": {
-    "babel-core": "^6.0.20",
-    "babel-polyfill": "^6.0.16",
-    "babel-preset-es2015": "^6.0.15",
-    "babel-preset-stage-0": "^6.0.15",
     "kcors": "^2.2.1",
     "koa": "^2.0.0-alpha.2",
     "koa-bodyparser": "3",
