@@ -5,13 +5,10 @@ const bodyParser = require('koa-bodyparser');
 
 const app = new koa();
 
-let tweets = [
-  { title: 'tweet 1', id: 1 },
-  { title: 'tweet 2', id: 2 },
-  { title: 'tweet 3', id: 3 },
-  { title: 'tweet 4', id: 4 },
-  { title: 'tweet 5', id: 5 },
-  { title: 'tweet 6', id: 6 }
+let todos = [
+  { title: 'learn elm', id: 1, completed: false, },
+  { title: 'write elm app', id: 2, completed: false },
+  { title: 'start using elm at work', id: 3, completed: false }
 ];
 
 const meta = {
@@ -20,11 +17,20 @@ const meta = {
 
 app.use(cors());
 app.use(bodyParser());
+
 app.use(async ctx => {
-  if (ctx.path === '/tweets') {
+  if (ctx.path === '/todos') {
     meta.requestCount = meta.requestCount + 1;
-    ctx.body = tweets;
+    ctx.body = todos;
+  }
+
+  if (ctx.path === '/createTodo') {
+    todos = [...todos, {
+      title: ctx.request.body.title,
+      id: todos.length > 0 ? todos.reverse()[0].id + 1 : 1
+    }]
+    ctx.response.status = 201;
   }
 });
 
-app.listen(3000);
+app.listen(3030);
